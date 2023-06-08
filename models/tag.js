@@ -14,10 +14,25 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Tag.init({
-    name: DataTypes.STRING
+    name: 
+    {
+     type: DataTypes.STRING,
+     allowNull: false,
+     validate: {
+        notEmpty:{
+          msg: 'Tags harus diisi'
+        }
+      }
+    }
+
   }, {
     sequelize,
     modelName: 'Tag',
+    hooks:{
+      beforeCreate: (tag,options)=>{
+        tag.name = '#'+ tag.name
+      }
+    }
   });
   return Tag;
 };

@@ -6,6 +6,7 @@ module.exports = {
   up (queryInterface, Sequelize) {
     let data = JSON.parse(fs.readFileSync('./tags.json','utf-8')).map(el=>{
       el.createdAt = el.updatedAt = new Date()
+      return el
     })
     return queryInterface.bulkInsert('Tags',data)
     /**

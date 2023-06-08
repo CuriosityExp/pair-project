@@ -5,7 +5,7 @@ class PostController{
         Post.showAllFeeds()
             .then(posts => {
                 // console.log(posts);
-                res.render('feeds', { posts })
+                res.render('feeds', { posts ,userSession:req.session.userId })
             })
             .catch(err => {
                 console.log(err);
