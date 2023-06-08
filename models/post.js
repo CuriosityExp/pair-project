@@ -27,6 +27,17 @@ module.exports = (sequelize, DataTypes) => {
       })
     }
 
+    static searchByTitle(search) {
+      return Post.findAll({
+        include: sequelize.models.User,
+        where:{
+          title:{
+            [Op.iLike]: `%${search}%`
+          }
+        }
+      })
+    }
+
     static associate(models) {
       Post.hasMany(models.PostTag)
       Post.belongsTo(models.User)
@@ -53,7 +64,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     imgUrl: DataTypes.STRING,
     UserId: DataTypes.INTEGER,
-    TagId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Post',

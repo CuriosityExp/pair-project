@@ -24,6 +24,8 @@ router.use((req,res,next)=>{
     }
 })
 
+router.get('/logout',UserController.userLogout)
+
 router.get('/feeds', PostController.renderFeeds)
 router.get('/post/add', PostController.formAddPost)
 router.post('/post/add',upload.single('imgUrl'), PostController.postFormAdd)
@@ -37,6 +39,8 @@ router.post('/post/:postId/edit', PostController.handlerEditPost)
 router.get('/profile/:userId', UserController.userProfile)
 router.get('/profile/:userId/edit', UserController.formEditProfile)
 router.post('/profile/:userId/edit',upload.single('avatar'), UserController.updateProfile)
+
+
 
 
 

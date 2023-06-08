@@ -69,7 +69,14 @@ class UserController{
 
 
     static userProfile(req,res){
-
+        const {userId} = req.params
+        User.findByPk(userId,{
+            include: Profile
+        })
+        .then(user=>{
+            res.render('profile',{ user , userSession: req.session.userId })
+        })
+        .catch(err => res.send(err))
     }
 
     static formEditProfile(req,res){
@@ -81,8 +88,13 @@ class UserController{
     }
 
 
-    static userlogout(req,res){
-
+    static userLogout(req,res){
+        req.session.destroy((err)=>{
+            if(err) res.send(err)
+            else{
+                res.redirect('/')
+            }
+        })
     }
 }
 

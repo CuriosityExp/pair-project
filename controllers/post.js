@@ -3,16 +3,27 @@ const { Op } = require('sequelize')
 class PostController{
     static renderFeeds(req,res){
         const { search } = req.query
-
-        Post.showAllFeeds(search)
-            .then(posts => {
-                // console.log(posts);
-                res.render('feeds', { posts ,userSession:req.session.userId })
-            })
-            .catch(err => {
-                console.log(err);
-                res.send(err)
-            })
+        if(search){
+            Post.searchByTitle(search)
+                .then(posts => {
+                    // console.log(posts);
+                    res.render('feeds', { posts, userSession: req.session.userId })
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.send(err)
+                })
+        }else{
+            Post.showAllFeeds()
+                .then(posts => {
+                    // console.log(posts);
+                    res.render('feeds', { posts ,userSession:req.session.userId })
+                })
+                .catch(err => {
+                    console.log(err);
+                    res.send(err)
+                })
+        }
     }
 
     static formAddPost(req,res){
