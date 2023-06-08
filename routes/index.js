@@ -28,6 +28,9 @@ router.get('/feeds', PostController.renderFeeds)
 router.get('/post/add', PostController.formAddPost)
 router.post('/post/add',upload.single('imgUrl'), PostController.postFormAdd)
 router.get('/post/:postId/detail', PostController.postDetail)
+router.get('/post/:postId/delete', PostController.deletePost)
+router.get('/post/:postId/edit', PostController.editPost)
+router.post('/post/:postId/edit', PostController.handlerEditPost)
 
 
 

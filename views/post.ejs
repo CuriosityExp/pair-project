@@ -11,6 +11,9 @@
     <div class="container text-center">
         <div class="row mb-2">
             <h1> <%= post.title %> </h1>
+            <h5>Uploaded by <%= post.User.username %></h5>
+            <h6>on <%= post.formatDateNumeric %></h6>
+
         </div>
         <div class="row mb-2">
             <img src="/<%= post.imgUrl %>" alt="..." srcset="">
@@ -23,7 +26,12 @@
         </div>
         <% if (post.User.id === userSession) { %>
             <div class="row mb-2">
-                <a class="btn btn-danger" href="/post/<%= post.id %>/delete">Delete</a>
+                <div class="col-auto">
+                    <a class="btn btn-warning " href="/post/<%= post.id %>/edit">Edit</a>
+                </div>
+                <div class="col-auto">
+                    <a class="btn btn-danger" href="/post/<%= post.id %>/delete">Delete</a>
+                </div>
             </div>
         <% } %>
     </div>

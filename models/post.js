@@ -16,7 +16,13 @@ module.exports = (sequelize, DataTypes) => {
       };
       return this.createdAt.toLocaleDateString('id-ID',options)
     }
-    
+
+    static showAllFeeds(){
+      return Post.findAll({
+        include: sequelize.models.User
+      })
+    }
+
     static associate(models) {
       Post.hasMany(models.PostTag)
       Post.belongsTo(models.User)

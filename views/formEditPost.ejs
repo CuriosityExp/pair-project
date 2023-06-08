@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('css') %>
+    <title>Add New Post</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <h1>Edit Post</h1>
+        </div>
+        <% if (errors) { %>
+        <div class="row text-danger">
+            <%= errors %>
+        </div>
+        <% } %>
+        <div class="row">
+            <form action="/post/<%= post.id %>/edit" method="post">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input name="title" type="text" class="form-control" value="<%= post.title %>">
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">Caption</label>
+                    <textarea class="form-control" name="content" id="" cols="30" rows="10">
+                        <%= post.content %>
+                    </textarea>
+                </div>
+                <div class="row p-2">
+                    <div class="col-auto">
+                        <input class="btn btn-primary" type="submit" value="Edit Post">
+                    </div>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+</body>
+</html>
