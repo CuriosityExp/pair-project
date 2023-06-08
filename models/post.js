@@ -4,19 +4,45 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+    
+    
+
+    get formatDateNumeric(){
+      const options = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      };
+      return this.createdAt.toLocaleDateString('id-ID',options)
+    }
+    
     static associate(models) {
-      // define association here
+      Post.hasMany(models.PostTag)
+      Post.belongsTo(models.User)
     }
   }
   Post.init({
-    title: DataTypes.STRING,
-    content: DataTypes.TEXT,
-    imgUrl: DataTypes.STRING
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'Title harus ada'
+        }
+      }
+    },
+    content: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'Caption harus ada'
+        }
+      }
+    },
+    imgUrl: DataTypes.STRING,
+    UserId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Post',
