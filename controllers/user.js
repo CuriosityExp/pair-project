@@ -23,6 +23,7 @@ class UserController{
                     // console.log(req.session,'<<<<<<<<<<<<<INI');
                     req.session.userId = user.id
                     req.session.username = user.username
+                    req.session.role = user.role
                     // console.log(req.session,'<<<<<<<<----------');
                     return res.redirect('/feeds')
                 }else{
@@ -48,9 +49,9 @@ class UserController{
     }
 
     static postRegister(req, res) {
-        const {email,password,role} = req.body
+        const {email,fullname,password} = req.body
         // console.log(req.body);
-        User.create({ email, password })
+        User.create({ email,fullname, password })
             .then(result=>{
                 res.redirect('/login')
             })
@@ -66,6 +67,18 @@ class UserController{
 
     }
 
+
+    static userProfile(req,res){
+
+    }
+
+    static formEditProfile(req,res){
+
+    }
+
+    static updateProfile(req, res) {
+
+    }
 
 
     static userlogout(req,res){

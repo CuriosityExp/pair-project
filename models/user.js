@@ -7,12 +7,22 @@ module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     
     static associate(models) {
+      User.hasOne(models.Profile)
       User.hasMany(models.UserGroup)
       User.hasMany(models.Post)
     }
   }
   User.init({
     username: DataTypes.STRING,
+    fullname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: {
+          msg: 'Nama harus diisi'
+        },
+      }
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,

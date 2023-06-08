@@ -2,7 +2,9 @@ const { User, Post } = require('../models')
 const { Op } = require('sequelize')
 class PostController{
     static renderFeeds(req,res){
-        Post.showAllFeeds()
+        const { search } = req.query
+
+        Post.showAllFeeds(search)
             .then(posts => {
                 // console.log(posts);
                 res.render('feeds', { posts ,userSession:req.session.userId })

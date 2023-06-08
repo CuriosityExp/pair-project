@@ -11,13 +11,13 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/feeds">Feeds</a>
+                    <a class="nav-link "  href="/feeds">Feeds</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/profile/<%= userSession %>">Account</a>
+                    <a class="nav-link active" aria-current="page" href="/profile/<%= userSession %>">Account</a>
                 </li>
             </ul>
-            <form action="" class="d-flex" role="search" method="get">
+            <form action="/feeds" class="d-flex" role="search" method="get">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>

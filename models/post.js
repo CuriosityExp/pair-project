@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model, Op
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
         day: "numeric",
       };
       return this.createdAt.toLocaleDateString('id-ID',options)
+    }
+
+    get captionShort(){
+      return (this.content.slice(0,50) + '. . .')
     }
 
     static showAllFeeds(){
@@ -48,7 +52,8 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     imgUrl: DataTypes.STRING,
-    UserId: DataTypes.INTEGER
+    UserId: DataTypes.INTEGER,
+    TagId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Post',

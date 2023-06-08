@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('css') %>
+    <title>Profile</title>
+</head>
+<body>
+    <%- include('navbarProfile') %>
+    <div class="container text-center">
+        <div class="row"><h1>Profile</h1></div>
+        <div class="row">
+            <img src="<%= user.Profile?.avatar %>" alt="" srcset="">
+        </div>
+        <div class="row">
+            <p style="white-space: pre-line;">Fullname:
+                <%= user.fullname %>
+            </p>
+        </div>
+        <div class="row">
+            <p style="white-space: pre-line;">Bio:
+                <%= user.Profile?.bio %>
+            </p>
+        </div>
+        <div class="row">
+            <p style="white-space: pre-line;">Hobby:
+                <%= user.Profile?.hobby %>
+            </p>
+        </div>
+        <div class="row">
+            <a class="btn btn-warning" href="/profile/<% user.id %>/edit"></a>
+        </div>
+
+    </div>
+</body>
+</html>
